@@ -1,0 +1,25 @@
+<svg id="svg-test">
+</svg>
+<a href="#" id="change-to-canvas">转换成canvas</a>
+<canvas id="canvas-test">
+</canvas>
+<a href="#" id="change-to-png">转换成png</a>
+<img id="img-test">
+
+<script type="text/javascript">
+	var svgTest = Snap('#svg-test').attr({width: 220, height: 320});
+	var rect = svgTest.rect(10, 10, 200, 300).attr({fill: "#fff", stroke: "#000", strokeWidth: 4});
+	var text = svgTest.text(50, 50, "test svg");
+
+	$('#change-to-canvas').click(function() {
+		var svgStr = Snap('#svg-test').outerSVG();
+		canvg(document.getElementById('canvas-test'), svgTest.outerSVG());
+		console.log(svgStr);
+	});
+
+	$('#change-to-png').click(function() {
+		var dataURL = document.getElementById('canvas-test').toDataURL();
+		console.log(dataURL);
+		$('#img-test').attr('src', dataURL);
+	});
+</script>
